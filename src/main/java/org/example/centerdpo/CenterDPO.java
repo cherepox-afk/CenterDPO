@@ -9,41 +9,54 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.format.DateTimeParseException;
 import java.io.IOException; 
+import javax.swing.UIManager;
+import javax.swing.SwingUtilities;
+import org.example.centerdpo.view.FormAuth;
 
 public class CenterDPO {
-    static ArrayList<Student> students = new ArrayList<>();
-    static ArrayList<Teacher> teachers = new ArrayList<>();
-    static ArrayList<Program> programs = new ArrayList<>();
+    public static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<Teacher> teachers = new ArrayList<>();
+    public static ArrayList<Program> programs = new ArrayList<>();
     static ArrayList<Course> courses = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
     
     public static void main(String[] args) {
-         importData();
+        try {
+           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) { }
+        SwingUtilities.invokeLater(() -> {
+           new FormAuth().setVisible(true);
+       });
 
-        boolean exit = false;
-        while (!exit) {
-            System.out.println("\nМеню:");
-            System.out.println("1. Добавить студента");
-            System.out.println("2. Добавить преподавателя");
-            System.out.println("3. Добавить программу обучения");
-            System.out.println("4. Добавить курс");
-            System.out.println("5. Выход");
-            System.out.print("Выберите пункт: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // очистка буфера
 
-            switch (choice) {
-                case 1 -> addStudent();
-                case 2 -> addTeacher();
-                case 3 -> addProgram();
-                case 4 -> addCourse();
-                case 5 -> {
-                    exit = true;
-                    exportData();
-                }
-                default -> System.out.println("Неверный выбор");
-            }
-        }
+
+
+//         importData();
+//
+//        boolean exit = false;
+//        while (!exit) {
+//            System.out.println("\nМеню:");
+//            System.out.println("1. Добавить студента");
+//            System.out.println("2. Добавить преподавателя");
+//            System.out.println("3. Добавить программу обучения");
+//            System.out.println("4. Добавить курс");
+//            System.out.println("5. Выход");
+//            System.out.print("Выберите пункт: ");
+//            int choice = scanner.nextInt();
+//            scanner.nextLine(); // очистка буфера
+//
+//            switch (choice) {
+//                case 1 -> addStudent();
+//                case 2 -> addTeacher();
+//                case 3 -> addProgram();
+//                case 4 -> addCourse();
+//                case 5 -> {
+//                    exit = true;
+//                    exportData();
+//                }
+//                default -> System.out.println("Неверный выбор");
+//            }
+//        }
     }
 
     public static void addStudent() {
